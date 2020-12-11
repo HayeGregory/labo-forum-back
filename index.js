@@ -27,6 +27,11 @@ app.post('/user', (req, res) => {
 
 })
 
+// logger testing
+// logger.info('index.js', 'test logger info' );
+// logger.debug('index.js', 'test logger debug' );
+// logger.error('index.js', 'test logger error' );
+
 // start server
-const serverInfo = {port : 3000, ip : '127.0.0.1'};
-app.listen( 3000, () => { logger.info("index.js", serverInfo) });
+const serverInfo = { ip : '127.0.0.1', port : 3000 };
+app.listen( 3000, () => { logger.info("index.js", `app started at : ${serverInfo.ip}:${serverInfo.port} ...`) });
