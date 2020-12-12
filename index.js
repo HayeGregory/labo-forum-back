@@ -5,6 +5,7 @@ const express = require('express');
 const logger = require('./utils/logger.util');
 
 const { UserRouter } = require('./modules/user');
+const db = require('./models');
 const app = express();
 
 // middleware
@@ -13,6 +14,8 @@ app.use(bodyParser.json());
 // Router > controller >
 app.use('/user', UserRouter);
 
+db.sequelize.sync()
+    .then (_ => logger.info("Index.js APP", "Db synchronizee ... "));
 
 // start server
 const serverInfo = { ip: "127.0.0.1", port: 3000, routes: [
