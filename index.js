@@ -40,7 +40,6 @@ function writeJsonFile(path, data) {
     })
 }
 
-
 // API
 app.get('/user', (req, res) => { 
     readJsonFile(pathDB)
@@ -55,9 +54,9 @@ app.get('/user/:id', (req,res) => {
 app.post('/user', (req, res) => {
     readJsonFile(pathDB)
         .then(data  => {
-            // resolve bug first id == null 
-            let lastID = Math.max(...data.users.map(u => u.id)) == null && 0 ;
-            
+            //  bug first id == null 
+            let lastID = Math.max(...data.users.map(u => u.id));
+
             const user = req.body;
             logger.debug("id", lastID);
             user.id = lastID + 1;
