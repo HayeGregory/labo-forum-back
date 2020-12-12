@@ -24,37 +24,43 @@ const pathDB = path.join(__dirname, 'db', 'users.json');
 
 // methode lecture du users.json
 function readJsonFile(path) {
-    logger.debug("Check-VAR", pathDB);
     return new Promise((resolve, reject) => {
         fs.readFile(path)
-            .then(rawData => resolve(JSON.parse(rawData.toString())))
-            .catch (err => reject(err));
+        .then(rawData => resolve(JSON.parse(rawData.toString())))
+        .catch (err => reject(err));
     })
 }
 
 function writeJsonFile(path, data) {
     return new Promise((resolve, reject) => {
         fs.writeFile(path, JSON.stringify(data, null, "\t"))
-            .then(_ => resolve())
-            .catch(err => reject(err));
+        .then(_ => resolve())
+        .catch(err => reject(err));
     })
 }
 
 // API
 app.get('/user', (req, res) => { 
     readJsonFile(pathDB)
-        .then ( data => res.json( data))
-        .catch( err => res.status(500).jsonp({error: err.message}));
+    .then ( data => res.json( data))
+    .catch( err => res.status(500).jsonp({error: err.message}));
 });
 
-app.get('/user/:id', (req,res) => {
-
-})
+app.get('/user/:id', (req, res) => {
+    readJsonFile(pathDB)
+    .then(({users}) => {
+        const user = users.find(u => u.id == req.params.id)
+        logger.debug("Check-VAR", user);
+        
+        res.jsonp(user);
+    })
+    .catch( err => res.status(500).jsonp({error : err.message}));
+});
 
 app.post('/user', (req, res) => {
     readJsonFile(pathDB)
-        .then(data  => {
-            //  bug first id == null 
+    .then(data  => {
+        //  bug first id == null 
             let lastID = Math.max(...data.users.map(u => u.id));
 
             const user = req.body;
