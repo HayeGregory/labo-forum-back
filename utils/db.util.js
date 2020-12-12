@@ -1,9 +1,11 @@
-const fs = require('fs/promises');
+const fs = require('fs/promises'); // a partir d'une promesse
 const path = require('path');
 
-module.exports.DB_PATH = path.join(__dirname, '..', 'db', 'nomdb' );
+// ici tous les elements que je veux exporter
 
-module.exports = function readDB (path) {
+module.exports.DB_PATH = path.join(__dirname, '..', 'db', 'users.json' );
+
+module.exports.readDB = function (path) {
     return new Promise ((resolve, reject) => {
         fs.readFile(path)
             .then(rawData => resolve(JSON.parse(rawData.toString())))
@@ -11,7 +13,7 @@ module.exports = function readDB (path) {
     });
 }
 
-module.exports = function writeDB (path, data) {
+module.exports.writeDB = function (path, data) {
     return new Promise ((resolve, reject) => {
         fs.writeFile(path, JSON.stringify(data, null, "\t"))
             .then( _ => resolve())
