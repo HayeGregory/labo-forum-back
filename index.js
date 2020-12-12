@@ -40,13 +40,15 @@ function writeJsonFile(path, data) {
 }
 
 // API
+// getall
 app.get('/user', (req, res) => { 
     readJsonFile(pathDB)
     .then ( data => res.json( data))
     .catch( err => res.status(500).jsonp({error: err.message}));
 });
 
-app.get('/user/:id', (req, res) => {
+// getbyid :  l'id speficie en numerique positif
+app.get('/user/:id([0-9]+)', (req, res) => {
     readJsonFile(pathDB)
     .then(({users}) => {
         const user = users.find(u => u.id == req.params.id)
@@ -57,6 +59,7 @@ app.get('/user/:id', (req, res) => {
     .catch( err => res.status(500).jsonp({error : err.message}));
 });
 
+// create
 app.post('/user', (req, res) => {
     readJsonFile(pathDB)
     .then(data  => {
@@ -76,6 +79,26 @@ app.post('/user', (req, res) => {
         })
         .catch(err => res.status(500).jsonp({error: err.message})); 
 });
+
+// update
+app.put('/user/:id([0-9]+)', (req, res) => {
+    readJsonFile(pathDB)
+        .then((data) => {
+            const userIndex = data.users.findIndex(u => u.id == req.params.id);
+            
+            const updateUser = req.body;
+            updateUser.id = data.users[userIndex].id;
+            data.users[userIndex] = updateUser;
+
+            writeJsonFile(pathDB, data)
+                .then(_ => logger.info("user updated", `user ${req.params.id} updated`))
+                .catch(err => logger.error("App.update", err.message));
+
+            res.jsonp(updateUser);
+        })
+        .catch(err => res.status(500).jsonp({error : err.message}));
+})
+
 
 // logger testing
 // logger.info('index.js', 'test logger info' );
