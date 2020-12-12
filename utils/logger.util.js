@@ -15,7 +15,7 @@ class Logger {
 
     debug (contex, message) {
         const log = `[ ${contex} ] [ ${moment().format('LLL')} ] [ DEBUG ] : ${JSON.stringify(message,null,"\t") } `;
-        console.debug(chalk.yellow(log));
+        console.debug(chalk.cyan(log));
     }
 
     error (contex, message) {
