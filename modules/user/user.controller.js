@@ -29,8 +29,16 @@ class UserController {
     }
 
     getRolesByUserID({params: {id}}, res) {
+        // terminal :
+        // Executing (default): SELECT `Users`.`id`, `Users`.`username`, `Users`.`password`, `Users`.`createdAt`, `Users`.`updatedAt`, `Roles`.`id` AS `Roles.id`, `Roles`.`label` AS `Roles.label`, `Roles`.`createdAt` AS `Roles.createdAt`, `Roles`.`updatedAt` AS `Roles.updatedAt`, `Roles->User_Roles`.`UserId` AS `Roles.User_Roles.UserId`, `Roles->User_Roles`.`RoleId` AS `Roles.User_Roles.RoleId` FROM `Users` AS `Users` LEFT OUTER JOIN `User_Roles` AS `Roles->User_Roles` ON `Users`.`id` = `Roles->User_Roles`.`UserId` LEFT OUTER JOIN `Roles` AS `Roles` ON `Roles`.`id` = `Roles->User_Roles`.`RoleId` WHERE `Users`.`id` = '1';
         db.Users.findByPk(id, {include: ["Roles"]})
-            .then(user => res.json(user.Roles)) // ???? user.roles 
+            .then(user => res.json(user.Roles.map( r => ( { id: r.id, label: r.label } ))))
+            // .then(user => res.json(user.Roles)) 
+
+            // .then(async user => { res.json(await user.getRoles()) }) 
+            // --> equivalent en pl. requete (il faut retirer  l'include dans le findbypk), getRoles ( jointure )
+            // lazy loading : early loading ? 
+            
             .catch(err => this.#errorResponse(err, res));
     }
     
