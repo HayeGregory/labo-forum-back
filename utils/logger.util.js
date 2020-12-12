@@ -4,7 +4,6 @@ const chalk = require('chalk');
 const moment = require('moment');
 const fs = require('fs/promises'); // pour les fichiers
 const path = require('path'); // pour le path
-const { error } = require('console');
 
 class Logger {
 
