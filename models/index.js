@@ -15,7 +15,14 @@ let sequelize = new Sequelize({
 
 // mes modeles que j'utilise
 db["Users"] = require("../modules/user/user.model")(sequelize, DataTypes);
-db["Roles"] = require("../modules/role/role.models")(sequelize, DataTypes);
+db["Roles"] = require("../modules/role/role.model")(sequelize, DataTypes);
+
+// parcourir les objets de la db
+Object.keys(db).forEach( model => {
+    if (db[model].associate) {
+        db[model].associate(db);
+    }
+})
 
 db['sequelize'] = sequelize; // l'instance de sequelize
 db['Sequelize'] = Sequelize; // le type de la donnee, pour acceder aux fonctions statiques :)

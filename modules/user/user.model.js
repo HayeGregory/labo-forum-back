@@ -7,7 +7,8 @@ module.exports = function(sequelize, DataTypes) {
 
         // specifications des relations entre les tables, entités. (one-to-one, one-to-many, many-to-many)
         static associate(models) {
-
+            // timestamp false pour qu'il ne rajoute pas les colone created et updated
+            User.belongsToMany(models.Roles, {through: "User_Roles" , timestamps: false}) 
         }
     }
 

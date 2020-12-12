@@ -12,7 +12,7 @@ class UserController {
         // terminal :
         // Executing (default): SELECT `id`, `username`, `password`, `createdAt`, `updatedAt` FROM `Users` AS `Users`;
         db.Users
-            .findAll()
+            .findAll({include: ["Roles"]})  // pour inclure les roles dans la reponse : {include: ["Roles"]}
             .then(data => res.json(data))
             .catch(err => this.#errorResponse(err, res));
 
@@ -26,6 +26,12 @@ class UserController {
             .then(data => res.json(data))
             .catch(err => this.#errorResponse(err, res));
 
+    }
+
+    getRolesByUserID({params: {id}}, res) {
+        db.Users.findByPk(id, {include: ["Roles"]})
+            .then(user => res.json(user.Roles)) // ???? user.roles 
+            .catch(err => this.#errorResponse(err, res));
     }
     
     // CREATE
@@ -54,9 +60,17 @@ class UserController {
         // Executing (default): SELECT `id`, `username`, `password`, `createdAt`, `updatedAt` FROM `Users` AS `Users` WHERE `Users`.`id` = '1';
         // Executing (default): UPDATE `Users` SET `username`=$1,`updatedAt`=$2 WHERE `id` = $3
         const user = await db.Users.findByPk(id);
-        user.update({...body})
+        user.update({...body})    
             .then(updatedUser => res.json(updatedUser))
             .catch(err => this.#errorResponse(err, res));
+    }
+
+    async addRoleToUserAction({params: {id}, body}, res) {
+        const user = await db.Users.findByPk(id);
+        const role = await db.Roles.create({...body}); // Oo'''' pk creer un role?????
+        /* Flavian   */
+        user.addRole(role.id)
+            .then(user => res.json(user));
     }
 }
 

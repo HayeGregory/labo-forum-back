@@ -4,7 +4,7 @@ module.exports = function (sequelize, DataTypes) {
 
     class Role extends Model {
         static associate(models) {
-
+            Role.belongsToMany(models.Users, {through: "User_roles"})
         }
     }
     
@@ -14,4 +14,6 @@ module.exports = function (sequelize, DataTypes) {
         sequelize,
         modelName: 'Roles'
     });
+
+    return Role;
 }
