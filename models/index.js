@@ -13,7 +13,9 @@ let sequelize = new Sequelize({
     storage: path.join(__dirname, '..', 'db', 'db.sqlite3')
 });
 
+// mes modeles que j'utilise
 db["Users"] = require("../modules/user/user.model")(sequelize, DataTypes);
+db["Roles"] = require("../modules/role/role.models")(sequelize, DataTypes);
 
 db['sequelize'] = sequelize; // l'instance de sequelize
 db['Sequelize'] = Sequelize; // le type de la donnee, pour acceder aux fonctions statiques :)
