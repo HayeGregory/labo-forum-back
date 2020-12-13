@@ -18,29 +18,33 @@
 ---
 # Labo Forum
 
-#### STEP 1 Structurer mon application API 
+#### STEP 0 Structurer mon application API 
     1. voir Step 0
 
-#### STEP 2 Completer ma table user
+#### STEP 1 Completer ma table user
 
     1. Completer le modele table user
     2. Completer le controler 
     3. Completer le route
     4. Completer index
-    5. Completer models/indexindex     
-    6. tester avec postman
+    5. Completer models/index     
+    6. Completer App/index
+    7. tester avec postman
 
-#### STEP 3 Completer check role
+#### STEP 2 Completer check role
 
-    1. model, controller, routes, index et models/index
+    1. model, controller, routes, index, models/index et app/index
     2. etablir la liaison de table dans le/les model concerné ( 11, 1N, NN )
     3. selon ce que j'ai besoins : include dans controller
     4. tester postman
 
-#### STEP 4 Faire la meme chose pour table discussion et Message (relation 0N -> 1,1)
+#### STEP 3 Faire la meme chose pour table discussion et Message (relation 0N -> 1,1)
 
-    1. model, controller, routes, index et models/index, liaison, include et postman
-    2. 
+    1. Discussion :  model, controller, routes, index, models/index, app/index
+    2. Message : model, controller, routes, index, models/index, app/index
+    3. test postman
+    4. liaison, include
+    5. test postman
 
 
 #### -----------------
