@@ -6,6 +6,7 @@ const logger = require('./utils/logger.util');
 
 const { UserRouter } = require('./modules/user');
 const { RoleRouter } = require('./modules/role');
+const { DiscussionRouter } = require('./modules/discussion');
 
 const db = require('./models');
 const app = express();
@@ -13,10 +14,13 @@ const app = express();
 // middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 // Router > controller >
 app.use('/user', UserRouter);
 app.use('/role', RoleRouter);
+app.use('/discussion', DiscussionRouter);
 
+// synchroniser la db
 db.sequelize.sync()
     .then (_ => logger.info("Index.js APP", "Db synchronizee ... "));
 

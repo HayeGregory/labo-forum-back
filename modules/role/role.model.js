@@ -9,7 +9,7 @@ module.exports = function (sequelize, DataTypes) {
     }
     
     Role.init({
-        label: { type: DataTypes.STRING, allowNull: true}
+        label: { type: DataTypes.STRING, allowNull: false}
     },{
         sequelize,
         modelName: 'Roles'
