@@ -6,27 +6,44 @@ class UserController {
     #errorResponse = function(err, res) { 
         res.status(500).json({error: err.message}); 
     };
-    
+    // forum API : 
     // GET 
     getAllAction(req, res) {
         // terminal :
         // Executing (default): SELECT `id`, `username`, `password`, `createdAt`, `updatedAt` FROM `Users` AS `Users`;
-        db.Users
-            .findAll({include: ["Roles"]})  // pour inclure les roles dans la reponse : {include: ["Roles"]}
-            .then(data => res.json(data))
-            .catch(err => this.#errorResponse(err, res));
 
+        // pour inclure les roles dans la reponse : {include: ["Roles"]}
+        // demander pour recup quelquechose de plus court ( id et/ou label)
+        db.Users
+        .findAll()
+        .then(data => res.json(data))
+        .catch(err => this.#errorResponse(err, res));
+        
     }
-    
+
     getOneByIdAction({params: {id}}, res) {
         // terminal :
         // Executing (default): SELECT `id`, `username`, `password`, `createdAt`, `updatedAt` FROM `Users` AS `Users` WHERE `Users`.`id` = '1';
         db.Users
-            .findByPk(id)
-            .then(data => res.json(data))
-            .catch(err => this.#errorResponse(err, res));
-
+        .findByPk(id, {include: ["Roles"]})
+        .then(user => res.json(user))                    // user.Roles.map(r => ({ id: r.id , label: r.label})))
+        .catch(err => this.#errorResponse(err, res));
+        
     }
+
+    // CREATE
+    createAction( {body}, res ) {
+        // terminal :
+        // Executing (default): INSERT INTO `Users` (`id`,`username`,`password`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4);
+        db.Users
+            .create({...body})
+            .then(user => res.status(203).json(user))
+            .catch(console.log(body))
+            //.catch(err => this.#errorResponse(err, res));
+    }
+    
+    
+    // ---------------------------------------------------------------------------------
 
     getRolesByUserID({params: {id}}, res) {
         // terminal :
@@ -42,15 +59,6 @@ class UserController {
             .catch(err => this.#errorResponse(err, res));
     }
     
-    // CREATE
-    createAction( {body}, res ) {
-        // terminal :
-        // Executing (default): INSERT INTO `Users` (`id`,`username`,`password`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4);
-        db.Users
-            .create({...body})
-            .then(user => res.status(203).json(user))
-            .catch(err => this.#errorResponse(err, res));
-    }
 
     // PUT : UPDATE : element asynchrone
     async updateAction({params: {id}, body}, res) {

@@ -41,3 +41,22 @@
 
     1. model, controller, routes, index et models/index, liaison, include et postman
     2. 
+
+
+#### -----------------
+Fonctionnalite :
+•	Une page d’accueil permettant l’affichage de toutes les discussions ouverte aux visiteurs et membres connectés
+•	Une page d’administration permettant à l’administrateur 
+o	de nommé des modérateurs parmi les membres ( !!! trié les membres selon leur activité)
+o	d’assigné un modérateur à une discussions
+o	d’administrer les discussions (supprimer si ne réponds pas à la charte)
+•	Une page de modération permettant aux modérateurs d’afficher les messages signalés et le les accepter / éditer / supprimer
+•	Quand un modérateur supprime un message, avertir par message privé l’auteur de celui-ci
+•	Dès la troisième suppression d’un message d’un auteur, celui-ci passe en inactif. Il ne peut dès lors plus se connecter
+•	Créer un formulaire de connection
+•	Un utilisateur connecté peut créer des messages dans les discussions suivie
+•	Un utilisateur connecté peut signalé un message ne respectant pas la charte du forum
+•	Un visiteur peut s’inscrire
+•	Un visiteur ne peut voir que les discutions ouverte au public
+•	Un visiteur ne peut poster de message
+•	Lors de la désactivation d’un membre, un mail (utilisation de NodeMailler) doit lui être envoyé !!!BONUS !!!

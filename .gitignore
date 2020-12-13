@@ -1,4 +1,4 @@
 node_modules
 logs
-db/db.sqlite3
+db
 ReadMe
