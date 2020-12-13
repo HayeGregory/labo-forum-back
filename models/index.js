@@ -17,6 +17,7 @@ let sequelize = new Sequelize({
 db["Users"] = require("../modules/user/user.model")(sequelize, DataTypes);
 db["Roles"] = require("../modules/role/role.model")(sequelize, DataTypes);
 db["Discussions"] = require("../modules/discussion/discussion.model")(sequelize, DataTypes);
+db["Messages"] = require("../modules/message/message.model")(sequelize, DataTypes);
 
 // parcourir les objets de la db
 Object.keys(db).forEach( model => {

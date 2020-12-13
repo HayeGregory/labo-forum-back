@@ -22,7 +22,8 @@ class RoleController {
     }
 
     creationAction({body}, res) {
-        db.Roles.create({...body})
+        db.Roles
+            .create({...body})
             .then(role => res.status(203).json(role))
             .catch(err => this.#errorResponse(err, res));
     }
