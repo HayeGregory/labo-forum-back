@@ -9,8 +9,9 @@ module.exports = function (sequelize, DataTypes) {
     class Discussion extends Model {
 
         static associate(models) {
-            Discussion.hasMany(models.Messages)
-            Discussion.belongsTo(models.Users)
+            Discussion.hasMany(models.Messages);
+            Discussion.belongsTo(models.Users);
+            Discussion.belongsToMany(models.Users, {through: "User_Moderate_Discussions"});
         }
 
     }

@@ -23,6 +23,17 @@ class DiscussionController {
             .catch(err => this.#errorResponse(err, res));
 
     }
+
+    // Add user to moderate
+    async addUserToModerate ( {params: {id, idUser}}, res) {
+        const discussion = await db.Discussions.findByPk(id);
+        const user = await db.Users.findByPk(idUser);
+
+        discussion.addUser(user.id)
+            .then(discussion => res.json(discussion))
+            .catch(console.log("Errreur lors de l'ajout du moderateur"));
+        
+    }
     
 }
 

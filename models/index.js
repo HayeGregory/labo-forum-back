@@ -1,6 +1,7 @@
 // const UserModel = require("../modules/user/user.model");
 // db["Users"] = UserModel(sequelize, DataTypes);
 // simplification : require(...)(...)
+const logger = require('../utils/logger.util');
 
 // pour avoir l'autocompletion {} mais normalement pas de {}
 const {Sequelize, DataTypes} = require("sequelize");
@@ -22,6 +23,7 @@ db["Messages"] = require("../modules/message/message.model")(sequelize, DataType
 
 // parcourir les objets de la db
 Object.keys(db).forEach( model => {
+    logger.debug("index models", "Associate table : ");
     if (db[model].associate) {
         db[model].associate(db);
     }
