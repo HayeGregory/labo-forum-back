@@ -11,7 +11,7 @@ module.exports = function (sequelize, DataTypes) {
         static associate(models) {
             Discussion.hasMany(models.Messages);
             Discussion.belongsTo(models.Users);
-            Discussion.belongsToMany(models.Users, {through: "User_Moderate_Discussions"});
+            Discussion.belongsToMany(models.Users, {as: 'moderator' ,through: "User_Moderate_Discussions"});
         }
 
     }
