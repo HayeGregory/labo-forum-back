@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
+const { Database } = require('../../models');
 
 /**
  * 
@@ -7,8 +8,11 @@ const { Model, DataTypes } = require('sequelize');
 module.exports = function (sequelize, dataTypes) {
 
     class Message extends Model {
+        /** 
+         * @param {Database} models
+         */
         static associate(models) {
-            // ..
+            Message.belongsTo(models.Discussions )
         }
     }
 

@@ -6,6 +6,7 @@
 const {Sequelize, DataTypes} = require("sequelize");
 
 const path = require('path');
+
 const db = {}; // objet vide
 
 let sequelize = new Sequelize({
