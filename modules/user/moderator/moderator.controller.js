@@ -1,5 +1,7 @@
 const db = require ("../../../models");
 
+// controller particulier de user, le moderateur
+// - a definir la route pour ce controller
 class ModeratorController {
 
         // get discussions by moderator id

@@ -46,6 +46,15 @@
     4. liaison, include
     5. test postman
 
+#### etablir la liaison entre messages et user create
+
+#### etablir la liaison entre messages et user moderator
+    1. definir un controller particulier au sein de user ( faudra faire pareil pour followers)
+    2. modifier en consequence les differents fichiers pour etablier le flux de l'index.js au controller moderator
+    3. test
+    4. ajout d'une methode permettant de recuperer les discussions par le moderetor id (avec flavian) - a relire
+
+
 
 #### -----------------
 Fonctionnalite :
