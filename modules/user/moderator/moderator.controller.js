@@ -17,7 +17,7 @@ class ModeratorController {
             const moderator = await db.Users.findByPk(idUser);
             discussion.addModerator(moderator);
             discussion.save();
-            res.json("test");
+            res.json(`user : ${moderator.id} designé comme modo de la discussion ${discussion.id}`);
             
         }
 }

@@ -19,6 +19,7 @@
 # Labo Forum
 
 #### STEP 0 Structurer mon application API 
+
     1. voir Step 0
 
 #### STEP 1 Completer ma table user
@@ -46,15 +47,19 @@
     4. liaison, include
     5. test postman
 
-#### etablir la liaison entre messages et user create
+#### STEP 4 etablir la liaison entre discussion et user create
 
-#### etablir la liaison entre messages et user moderator
+#### STEP 5 etablir la liaison entre discussion et user moderator
+
+    0. etablir l a liaison NN  dans les models discussion et users
     1. definir un controller particulier au sein de user ( faudra faire pareil pour followers)
     2. modifier en consequence les differents fichiers pour etablier le flux de l'index.js au controller moderator
     3. test
     4. ajout d'une methode permettant de recuperer les discussions par le moderetor id (avec flavian) - a relire
 
-
+#### STEP 6 etablir la liaison entre discussion et user follower
+    1. refaire idem precedent
+    3. test
 
 #### -----------------
 Fonctionnalite :
