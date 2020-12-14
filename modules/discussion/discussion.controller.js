@@ -10,9 +10,9 @@ class DiscussionController {
     // GET
     getAllAction(req, res) {
         db.Discussions
-            .findAll({include: ["Messages"]}) /// ??????? ERROR , faut ti rajouter une assoc dans discussion pour le 1-many
-            .then(data => res.json(data.map(d => ({discussion_id: d.id, messages: d.Messages}))))
-            .catch(err => this.#errorResponse(err, res));
+            .findAll({include: ["Messages", "User"]}) /// inclure les messages, l'user
+            .then(data => res.json(data.map(d => ({discussion_id: d.id, messages: d.Messages, user: {username: d.User.username}})))) // creation d'un dto (data transfert object)
+            .catch(err => console.log(err));
     }
 
     // CREATE

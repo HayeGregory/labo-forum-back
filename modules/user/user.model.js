@@ -9,10 +9,14 @@ module.exports = function(sequelize, DataTypes) {
 
     class User extends Model {
 
-        // specifications des relations entre les tables, entités. (one-to-one, one-to-many, many-to-many)
+        // specifications des relations entre les tables, entités. 
+        // (one-to-one, 
+        // one-to-many, belongto - hasmany
+        // many-to-many : belongtomany - belongstomany
         // timestamp false pour qu'il ne rajoute pas les colone created et updated
         static associate(models) {
             User.belongsToMany(models.Roles, {through: "User_Roles" , timestamps: false}) 
+            User.hasMany(models.Discussions)
         }
     }
 

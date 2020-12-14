@@ -23,7 +23,7 @@ app.use('/discussion', DiscussionRouter);
 app.use('/message', MessageRouter);
 
 // synchroniser la db
-db.sequelize.sync()
+db.sequelize.sync( )
     .then (_ => logger.info("Index.js APP", "Db synchronizee ... "));
 
 // start server

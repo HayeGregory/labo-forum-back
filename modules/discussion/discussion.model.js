@@ -7,12 +7,10 @@ const { Model, DataTypes } = require ('sequelize');
 module.exports = function (sequelize, DataTypes) {
 
     class Discussion extends Model {
-        /**
-         * 
-         * @param {{Messages}} models 
-         */
+
         static associate(models) {
             Discussion.hasMany(models.Messages)
+            Discussion.belongsTo(models.Users)
         }
 
     }
