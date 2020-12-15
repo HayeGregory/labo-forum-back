@@ -12,7 +12,8 @@ module.exports = function (sequelize, dataTypes) {
          * @param {Database} models
          */
         static associate(models) {
-            Message.belongsTo(models.Discussions )
+            Message.belongsTo(models.Discussions );
+            Message.belongsTo(models.Users);
         }
     }
 

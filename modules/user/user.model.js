@@ -19,6 +19,7 @@ module.exports = function(sequelize, DataTypes) {
             User.hasMany(models.Discussions);
             User.belongsToMany(models.Discussions, {through: "User_Moderate_Discussions"});
             User.belongsToMany(models.Discussions, {through: "User_Follow_Discussions"});
+            User.hasMany(models.Messages);
         }
     }
 
